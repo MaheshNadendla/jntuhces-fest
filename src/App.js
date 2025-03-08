@@ -12,7 +12,7 @@ function App() {
     <AppBar position="static" sx={{ height : '100vh', backgroundImage: `url(${BG})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' , }} >
       <div style={{height:'100px', display :'flex',justifyContent : 'space-around' , alignItems: 'center', backgroundImage: `url(${navImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'bottom'}}>
         <Typography variant="h6" sx={{ flexGrow: 1,  }}>
-            Techfest Clone
+            Techfest
           </Typography>
         <Button color="inherit">Home</Button>
         <Button color="inherit">Events</Button>
@@ -21,10 +21,10 @@ function App() {
 
       <Container   >
       <Typography variant="h3" gutterBottom>
-        Welcome to Techfest Clone
+        Welcome to Techfest
       </Typography>
       <Typography variant="body1">
-        This is a static React-based clone using Material UI.
+        welcome back guys this is not that
       </Typography>
     </Container>
 
