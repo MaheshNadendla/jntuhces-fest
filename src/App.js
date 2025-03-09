@@ -17,8 +17,8 @@ function App() {
         <Button color="inherit">Home</Button>
         <Button color="inherit">Events</Button>
         <Button color="inherit">About</Button>
-        
-      </div>
+
+      </Toolbar>
 
       <Container   >
       <Typography variant="h3" gutterBottom>
