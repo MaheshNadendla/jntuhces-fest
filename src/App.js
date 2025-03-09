@@ -24,7 +24,7 @@ function App() {
         Welcome to Techfest
       </Typography>
       <Typography variant="body1">
-        welcome back guys this is not that
+        welcome back guys this is not that 
       </Typography>
     </Container>
 
