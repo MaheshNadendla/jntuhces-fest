@@ -14,12 +14,9 @@ function App() {
         <Typography variant="h6" sx={{ flexGrow: 1,  }}>
             Techfest
           </Typography>
-        <button color="inherit">Home</button>
+        <Button color="inherit">Home</Button>
         <Button color="inherit">Events</Button>
-
-        hello
-
-        <button color="inherit">About</button>
+        <Button color="inherit">About</Button>
 
       </Toolbar>
 
