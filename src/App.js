@@ -15,7 +15,7 @@ function App() {
             Techfest
           </Typography>
         <button color="inherit">Home</button>
-        <Button color="inherit">Events</Button>
+        <button color="inherit">Events</button>
         <Button color="inherit">About</Button>
       </Toolbar>
 
