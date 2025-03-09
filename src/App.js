@@ -10,14 +10,14 @@ import './App.css'
 function App() {
   return (
     <AppBar position="static" sx={{ height : '100vh', backgroundImage: `url(${BG})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' , }} >
-      <div style={{height:'100px', display :'flex',justifyContent : 'space-around' , alignItems: 'center', backgroundImage: `url(${navImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'bottom'}}>
+      <Toolbar style={{height:'100px', display :'flex',justifyContent : 'space-around' , alignItems: 'center', backgroundImage: `url(${navImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'bottom'}}>
         <Typography variant="h6" sx={{ flexGrow: 1,  }}>
             Techfest
           </Typography>
         <Button color="inherit">Home</Button>
         <Button color="inherit">Events</Button>
         <Button color="inherit">About</Button>
-      </div>
+      </Toolbar>
 
       <Container   >
       <Typography variant="h3" gutterBottom>
@@ -27,6 +27,8 @@ function App() {
         welcome back guys this is not that 
       </Typography>
     </Container>
+
+
 
     </AppBar>
   );
