@@ -142,7 +142,8 @@ const App = () => {
                 maxWidth: "100dvw", 
                 p: 0, 
                 m: 0, 
-                overflowX: "hidden" 
+                overflowX: "hidden",
+                boxShadow : "0px 20px 20px #1e262a"
               }}>
               <Homes />
             </Container>
