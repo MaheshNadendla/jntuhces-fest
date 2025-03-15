@@ -88,7 +88,7 @@ const App = () => {
             filter: "drop-shadow(5px 5px 5px black)",
           }}
         >
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>Blog Website</Typography>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>JNTUHCES FEST 2K25</Typography>
 
           {isTablet ? (
             // Show Hamburger Menu on Tablet
@@ -162,7 +162,9 @@ const App = () => {
 
           <Routes>
             <Route path="/blog/:id" element={<BlogDetailWrapper />} />
-          </Routes>
+          </Routes>/
+
+          <div className="Screen"></div>
         </>
       )}
     </Router>
