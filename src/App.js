@@ -147,7 +147,7 @@ const App = () => {
               <Homes />
             </Container>
 
-          <div style={{background:'linear-gradient(#1e262a, #0000)', height:'150px',width:'100dvw',padding: '0',margin :'0'}}></div>
+          {/* <div style={{background:'linear-gradient(#1e262a, #0000)', height:'150px',width:'100dvw',padding: '0',margin :'0'}}></div> */}
 
           <div ref={BranchesRef} style={{ minHeight: "100vh", width: "100vw", paddingTop: 20 }}>
             <Branches />
