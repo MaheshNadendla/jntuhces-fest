@@ -22,7 +22,7 @@ import LanternScene from "./components/LanternScene.jsx";
 import nav from "./assets/nav.svg";
 import AI from "./assets/AI.jpg";
 import Bg from "./components/Bg.jsx";
-import HomeShadow from "./components/HomeShadow.jsx";
+// import HomeShadow from "./components/HomeShadow.jsx";
 import Branches from "./components/Branches.jsx";
 import WorkShops from "./components/WorkShops.jsx";
 import Loading from "./components/Loading/Loading.jsx";
@@ -147,9 +147,7 @@ const App = () => {
               <Homes />
             </Container>
 
-          <div  style={{ margin: 0, padding: 0 }}>
-            <HomeShadow />
-          </div>
+          <div style={{background:'linear-gradient(#1e262a, #0000)', height:'150px',width:'100dvw',padding: '0',margin :'0'}}></div>
 
           <div ref={BranchesRef} style={{ minHeight: "100vh", width: "100vw", paddingTop: 20 }}>
             <Branches />
@@ -173,7 +171,7 @@ const App = () => {
 
           <Routes>
             <Route path="/blog/:id" element={<BlogDetailWrapper />} />
-          </Routes>/
+          </Routes>
 
           <div className="Screen"></div>
         </>
