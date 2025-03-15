@@ -70,6 +70,8 @@ const App = () => {
           backgroundImage: `url(${AI})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
           backgroundColor: "transparent",
           width: "100vw",
           minWidth: "100dvw",
