@@ -45,7 +45,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 7500);
   }, []);
 
   const scrollToSection = (ref) => {
@@ -63,7 +63,7 @@ const App = () => {
   ];
 
   return (
-    <Router>
+    <Router style={{height:"auto"}} >
       <AppBar
         position="fixed"
         style={{
@@ -71,7 +71,16 @@ const App = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundColor: "transparent",
+          width: "100vw",
+          minWidth: "100dvw",
+          height : "auto",
+
           zIndex: 100,
+
+          "@media (max-width: 768px)": {
+            backgroundSize: "contain", // Adjust for small screens
+          },
+
         }}
       >
         <Toolbar
@@ -136,9 +145,9 @@ const App = () => {
               <Homes />
             </Container>
 
-          <Container disableGutters sx={{ p: 0, m: 0 }}>
+          <div  style={{ margin: 0, padding: 0 }}>
             <HomeShadow />
-          </Container>
+          </div>
 
           <div ref={BranchesRef} style={{ minHeight: "100vh", width: "100vw", paddingTop: 20 }}>
             <Branches />

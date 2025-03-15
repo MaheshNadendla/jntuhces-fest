@@ -39,8 +39,10 @@ html, body {
 .Screen{
 
   background-color:#1e262a88;
-  height:100dvh;
-  width:100dvw;
+  min-height: 100dvh;
+  min-width : 100dvw;
+  height:auto;
+  width:auto;
 
   position: fixed;
   top:0;
@@ -76,20 +78,6 @@ html, body {
 }
 
 
-.Ultron{
-
-  
-
- /* display: none; */
-
- /* background-color: transparent; */
-
- 
-
-
-
-
-}
 
 
 
