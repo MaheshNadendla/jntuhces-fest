@@ -1,36 +1,172 @@
-import React from "react";
-import navImage from './assets/nav.svg'
-import BG from './assets/AI.jpg'
+import React, { useRef, useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Container, AppBar, Toolbar, Typography, Button } from "@mui/material";
-import './App.css'
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  Typography,
+  Container,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  useMediaQuery,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu"; // Hamburger Icon
+import Homes from "./components/Homes";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import BlogDetailWrapper from "./components/BlogDetailWrapper";
+import LanternScene from "./components/LanternScene.jsx";
+import nav from "./assets/nav.svg";
+import AI from "./assets/AI.jpg";
+import Bg from "./components/Bg.jsx";
+import HomeShadow from "./components/HomeShadow.jsx";
+import Branches from "./components/Branches.jsx";
+import WorkShops from "./components/WorkShops.jsx";
+import Loading from "./components/Loading/Loading.jsx";
 
+import "./App.css";
 
+const App = () => {
+  const homeRef = useRef(null);
+  const aboutRef = useRef(null);
+  const contactRef = useRef(null);
+  const BranchesRef = useRef(null);
+  const WorkShopRef = useRef(null);
+  const Robos = useRef(null);
 
-function App() {
+  const [loading, setLoading] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const isTablet = useMediaQuery("(max-width: 768px)"); // Detects tablet screens
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false); // Close menu on click
+  };
+
+  const menuItems = [
+    { label: "Home", ref: homeRef },
+    { label: "Branches", ref: BranchesRef },
+    { label: "Shops", ref: WorkShopRef },
+    { label: "About", ref: aboutRef },
+    { label: "Contact", ref: contactRef },
+    { label: "College View", ref: Robos },
+  ];
+
   return (
-    <AppBar position="static" sx={{ height : '100vh', backgroundImage: `url(${BG})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' , }} >
-      <Toolbar style={{height:'100px', display :'flex',justifyContent : 'space-around' , alignItems: 'center', backgroundImage: `url(${navImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'bottom'}}>
-        <Typography variant="h6" sx={{ flexGrow: 1,  }}>
-            Techfest
-          </Typography>
-        <Button color="inherit">Home</Button>
-        <Button color="inherit">Events</Button>
-        <Button color="inherit">About</Button>
+    <Router>
+      <AppBar
+        position="fixed"
+        style={{
+          backgroundImage: `url(${AI})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundColor: "transparent",
+          zIndex: 100,
+        }}
+      >
+        <Toolbar
+          sx={{
+            backgroundImage: `url(${nav})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            minHeight: "64px",
+            width: "100dvw",
+            backgroundColor: "transparent",
+            boxShadow: "none",
+            position: "fixed",
+            zIndex: 100,
+            filter: "drop-shadow(5px 5px 5px black)",
+          }}
+        >
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>Blog Website</Typography>
 
-      </Toolbar>
+          {isTablet ? (
+            // Show Hamburger Menu on Tablet
+            <IconButton color="inherit" onClick={() => setMenuOpen(true)}>
+              <MenuIcon />
+            </IconButton>
+          ) : (
+            // Show Normal Buttons on Desktop
+            menuItems.map((item, index) => (
+              <Button key={index} color="inherit" onClick={() => scrollToSection(item.ref)}>
+                {item.label}
+              </Button>
+            ))
+          )}
+        </Toolbar>
+      </AppBar>
 
-      <Container   >
-      <Typography variant="h3" gutterBottom>
-        Welcome to Techfest
-      </Typography>
-      <Typography variant="body1">
-        welcome back guys this is not that 
-      </Typography>
-    </Container>
+      {/* Sidebar for Tablets */}
+      <Drawer anchor="left" open={menuOpen} onClose={() => setMenuOpen(false)}>
+        <List sx={{ width: 250 }}>
+          {menuItems.map((item, index) => (
+            <ListItem button key={index} onClick={() => scrollToSection(item.ref)}>
+              <ListItemText primary={item.label} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
 
-    </AppBar>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Bg />
+
+          <Container disableGutters ref={homeRef} 
+              sx={{ 
+                height: "100vh", 
+                minHeight: "100vh", 
+                width: "100dvw",   
+                maxWidth: "100dvw", 
+                p: 0, 
+                m: 0, 
+                overflowX: "hidden" 
+              }}>
+              <Homes />
+            </Container>
+
+          <Container disableGutters sx={{ p: 0, m: 0 }}>
+            <HomeShadow />
+          </Container>
+
+          <div ref={BranchesRef} style={{ minHeight: "100vh", width: "100vw", paddingTop: 20 }}>
+            <Branches />
+          </div>
+
+          <div ref={WorkShopRef} style={{ minHeight: "100vh", width: "100vw" }}>
+            <WorkShops />
+          </div>
+
+          <Container ref={aboutRef} sx={{ minHeight: "100vh", width: "100vw", paddingTop: 20, backgroundColor: "transparent" }}>
+            <About />
+          </Container>
+
+          <Container  ref={contactRef} disableGutters sx={{ minHeight: "100vh", width: "40vw", paddingTop: 20,p:0,m:0,margin :'0px' }}>
+            <Contact />
+          </Container>
+
+          <Container ref={Robos} disableGutters sx={{ minHeight: "100vh", p: 0, m: 0 }}>
+            <LanternScene />
+          </Container>
+
+          <Routes>
+            <Route path="/blog/:id" element={<BlogDetailWrapper />} />
+          </Routes>
+        </>
+      )}
+    </Router>
   );
-}
+};
 
 export default App;
