@@ -43,7 +43,7 @@ const App = () => {
   const WorkShopRef = useRef(null);
   const Robos = useRef(null);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const isLaptop = useMediaQuery("(min-width: 1440px)");
