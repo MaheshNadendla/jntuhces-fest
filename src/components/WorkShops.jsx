@@ -495,15 +495,32 @@
 
 
 import React, { useEffect, useRef, useState } from "react";
-import { Container, Box } from "@mui/material";
+import { Container, Box,Typography,Button,Grid,Card,CardContent } from "@mui/material";
 import sword from "../assets/axex.png";
 import shield from "../assets/axex2.png";
+import yuga from "../assets/yuga.png";
+import frame from "../assets/Frame.png"
+
+import ButtonHeading from "./ButtonHeading";
 
 function WorkShops() {
   const swordRef = useRef(null);
   const shieldRef = useRef(null);
   const [imageWidth, setImageWidth] = useState(0);
   const rotationSpeed = 4.5;
+
+
+  const workshopsarray = [
+    { title: "Devops", description: "Description for Devops", image: yuga, frame: frame },
+    { title: "Streamlit", description: "Framework to build the app using Python", image: yuga, frame: frame },
+    { title: "GitHub", description: "Version Control and Branching Strategies", image: yuga, frame: frame },
+    { title: "Docker", description: "Packaging of the app", image: yuga, frame: frame },
+    { title: "Huggingface", description: "Deployment of the app", image: yuga, frame: frame },
+    { title: "Other Vendors", description: "Deployment of the app", image: yuga, frame: frame },
+    
+  ];
+  
+
 
   useEffect(() => {
     if (swordRef.current) {
@@ -539,9 +556,19 @@ function WorkShops() {
     <Container
       id="workshop-section"
       maxWidth={false}
-      sx={{ height: "100vh", position: "relative", overflow: "hidden" }}
+      sx={{ minHeight: "100vh", position: "relative", overflow: "hidden" }}
     >
-      <Box sx={{ height: "100vh", display: "flex", alignItems: "center", position: "relative" }}>
+      <ButtonHeading name="Work Shops" />
+  
+      <Box
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
+        {/* Sword Image */}
         <Box
           component="img"
           ref={swordRef}
@@ -557,6 +584,7 @@ function WorkShops() {
             filter: "drop-shadow(5px 5px 5px red)",
           }}
         />
+        {/* Shield Image */}
         <Box
           component="img"
           ref={shieldRef}
@@ -573,8 +601,147 @@ function WorkShops() {
           }}
         />
       </Box>
+  
+      <ButtonHeading name="Devop's" />
+  
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          height: "auto",
+          maxWidth: "100dvw",
+          padding: "10px",
+        }}
+      >
+        <Grid container spacing={2} justifyContent="center">
+          {workshopsarray.map((event, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4} sx={{textAlign:"center"}}>
+              {/* Flip Card Container */}
+              <Box
+                sx={{
+                  perspective: "1000px", // 3D Effect
+                  display:"flex",
+                  justifyContent:"center",
+                  alignItems:"center",
+                  padding: 2,
+                  margin: 4,
+                  
+                }}
+              >
+                {/* Flip Inner Card */}
+                <Box
+                  sx={{
+                    width: "200px",
+                    height: "200px",
+                    marginBottom: "10px",
+                    position: "relative",
+                    transformStyle: "preserve-3d",
+                    transition: "transform 0.6s",
+                    
+                    "&:hover": {
+                      transform: "rotateY(180deg)", // Flip on Hover
+                    },
+                  }}
+                >
+                  {/* Front Side (Image + Frame) */}
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        position: "relative",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection : "column"
+                      }}
+                    >
+                      {/* Frame (Top Layer) */}
+                      <img
+                        src={event.frame}
+                        alt="Frame"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          zIndex: 2, // Frame stays above
+                          scale:"1.2"
+                        }}
+                      />
+                      {/* Event Image (Under Frame) */}
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          borderRadius: "8px",
+                          position: "absolute",
+                          zIndex: 1, // Image stays below
+                        }}
+                      />
+                    </Box>
+                  </Box>
+  
+                  {/* Back Side (Event Details) */}
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                      backfaceVisibility: "hidden",
+                      transform: "rotateY(180deg)", // Initially flipped
+                      backgroundColor: "rgba(0,0,0,0.8)",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: "10px",
+                      color: "white",
+                      textAlign: "center",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <Typography variant="h5" gutterBottom>
+                      {event.title}
+                    </Typography>
+                    <Typography variant="body1">{event.description}</Typography>
+                  </Box>
+                  
+                </Box>
+
+
+                
+
+                
+
+              </Box>
+
+              <Typography variant="h5" gutterBottom>
+                      {event.title}
+              </Typography>
+
+              
+
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </Container>
   );
+  
 }
 
 export default WorkShops;

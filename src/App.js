@@ -27,6 +27,12 @@ import Branches from "./components/Branches.jsx";
 import WorkShops from "./components/WorkShops.jsx";
 import Loading from "./components/Loading/Loading.jsx";
 
+
+
+
+
+
+
 import "./App.css";
 
 const App = () => {
@@ -37,8 +43,10 @@ const App = () => {
   const WorkShopRef = useRef(null);
   const Robos = useRef(null);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const isLaptop = useMediaQuery("(min-width: 1440px)");
 
   const isTablet = useMediaQuery("(max-width: 768px)"); // Detects tablet screens
 
@@ -56,14 +64,17 @@ const App = () => {
   const menuItems = [
     { label: "Home", ref: homeRef },
     { label: "Branches", ref: BranchesRef },
-    { label: "Shops", ref: WorkShopRef },
-    { label: "About", ref: aboutRef },
+    { label: "WorkShops", ref: WorkShopRef },
+    { label: "Events", ref: aboutRef },
     { label: "Contact", ref: contactRef },
     { label: "College View", ref: Robos },
   ];
 
   return (
     <Router style={{height:"auto"}} >
+
+
+
       <AppBar
         position="fixed"
         style={{
@@ -79,6 +90,8 @@ const App = () => {
 
           zIndex: 100,
 
+          fontFamily: 'Bruno Ace, sans-serif',
+
           "@media (max-width: 768px)": {
             backgroundSize: "contain", // Adjust for small screens
           },
@@ -87,11 +100,11 @@ const App = () => {
       >
         <Toolbar
           sx={{
-            backgroundImage: `url(${nav})`,
-            backgroundSize: "cover",
+            backgroundImage: isLaptop ?  `url(${nav})` : "none",
+              backgroundSize: "cover",
             backgroundPosition: "center",
             minHeight: "64px",
-            width: "100dvw",
+            width: "101dvw",
             backgroundColor: "transparent",
             boxShadow: "none",
             position: "fixed",
@@ -99,7 +112,16 @@ const App = () => {
             filter: "drop-shadow(5px 5px 5px black)",
           }}
         >
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>JNTUHCES FEST 2K25</Typography>
+          
+          <Typography
+              variant="h6"
+              sx={{
+                flexGrow: 1,
+                fontSize: { xs: "1rem", sm: "1.125rem", md: "1.25rem", lg: "1.5rem" },
+              }}
+            >
+              JNTUHCES FEST 2K25
+          </Typography>
 
           {isTablet ? (
             // Show Hamburger Menu on Tablet
@@ -109,8 +131,8 @@ const App = () => {
           ) : (
             // Show Normal Buttons on Desktop
             menuItems.map((item, index) => (
-              <Button key={index} color="inherit" onClick={() => scrollToSection(item.ref)}>
-                {item.label}
+              <Button sx={{fontSize:"x-small"}}  key={index} color="inherit"  onClick={() => scrollToSection(item.ref)}>
+                 {item.label}
               </Button>
             ))
           )}
@@ -143,12 +165,12 @@ const App = () => {
                 p: 0, 
                 m: 0, 
                 overflowX: "hidden",
-                boxShadow : "0px 20px 20px #1e262a"
+                
               }}>
               <Homes />
             </Container>
 
-          {/* <div style={{background:'linear-gradient(#1e262a, #0000)', height:'150px',width:'100dvw',padding: '0',margin :'0'}}></div> */}
+          { isLaptop && <div style={{background:'linear-gradient(#1e262a, #0000)', height:'150px',width:'100dvw',padding: '0',margin :'0'}}></div> }
 
           <div ref={BranchesRef} style={{ minHeight: "100vh", width: "100vw", paddingTop: 20 }}>
             <Branches />
@@ -158,7 +180,7 @@ const App = () => {
             <WorkShops />
           </div>
 
-          <Container ref={aboutRef} sx={{ minHeight: "100vh", width: "100vw", paddingTop: 20, backgroundColor: "transparent" }}>
+          <Container ref={aboutRef} sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "transparent" }}>
             <About />
           </Container>
 
@@ -177,6 +199,7 @@ const App = () => {
           <div className="Screen"></div>
         </>
       )}
+      
     </Router>
   );
 };
